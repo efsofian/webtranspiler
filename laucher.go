@@ -40,3 +40,10 @@ npm install --save-exact esbuild-wasm@0.8.27
 
 unpkg // public cdn with all npmregistry content
 
+
+new URL("./utils", "https://unpkg.com/medium-test-pkg") // 1: path 2: root // { href: goodurl }
+permet de generer le bon url  ./xx ou ../xx // ca vire le relatif
+
+si request to url and response redirect to a new url
+to acces the new url : { request: { responseURL}} // via axios
+
