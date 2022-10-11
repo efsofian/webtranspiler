@@ -47,3 +47,11 @@ permet de generer le bon url  ./xx ou ../xx // ca vire le relatif
 si request to url and response redirect to a new url
 to acces the new url : { request: { responseURL}} // via axios
 
+IndexDB // db in the browser
+lib helper: localforage from npm // fallback to localstorage if user dont have indexdb
+await localforage.getItem() // setItem
+import localForage from "localforage";
+
+const fileCache = localForage.createInstance({
+	name: 'filecache'
+});
