@@ -5,6 +5,7 @@ import { unpkgPathPlugin } from "./plugins/customPlugin";
 import { fetchPlugin } from "./plugins/fetchPlugin";
 
 const App = () => {
+	const iframe = React.useRef<any>();
 	const [input, setInput] = React.useState("");
 	const [code, setCode] = React.useState("");
 	const ref = React.useRef<any>();
@@ -28,13 +29,36 @@ const App = () => {
 				global: "window",
 			},
 		});
-		setCode(result.outputFiles[0].text);
-		eval(result.outputFiles[0].text);
+
+		// setCode(result.outputFiles[0].text);
+		iframe.current.contentWindow.postMessage(result.outputFiles[0].text, "*");
 	};
 
 	React.useEffect(() => {
 		startService();
 	}, []);
+
+	const html = `
+	<html>
+		<head></head>
+		<body>
+			<div id="root"></div>
+			<script>
+				window.addEventListener('message', (event) => {
+					try {
+						eval(event.data);
+					} catch(e) {
+						const root = document.querySelector('#root');
+						root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + e + '</div>';
+						console.error(e);
+					}
+					
+				}, false)
+			</script>
+		</body>
+	</html>
+	`;
+
 	return (
 		<div>
 			<textarea
@@ -44,6 +68,7 @@ const App = () => {
 				<button onClick={onClick}>Submit</button>
 			</div>
 			<pre>{code}</pre>
+			<iframe ref={iframe} sandbox="allow-scripts" srcDoc={html} />
 		</div>
 	);
 };
