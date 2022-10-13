@@ -77,3 +77,11 @@ open source browser editor:
 -codemirror // easy
 -ace editor // medium
 -monaco editor // hard
+
+useref for keeping pointers between renders:
+const val = React.useRef();
+...
+val.current = xx;
+...
+val.current.setValue(newVal); // to set a new val // weird marche pas
+val.current = yy;
