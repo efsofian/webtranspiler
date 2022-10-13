@@ -72,3 +72,8 @@ prop srcDoc=localString instead of src=outsideHtmlFile
 => sourceDoc et sandbox="" === no localStorage car no Window.
 
 eval(str) // permet dexec du code js sous passer sous forme de string
+
+open source browser editor:
+-codemirror // easy
+-ace editor // medium
+-monaco editor // hard
