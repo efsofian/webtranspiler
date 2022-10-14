@@ -99,3 +99,14 @@ declare module "nomdlalibquirequiereddeclare";
 
 npm install react-resizable @types/react-resizable
 { Resizable, ResizableBox } // resizable === more cfgs
+
+tech debounce react:
+React.useEffect(() => {
+	const timer = setTimeout(async () => {
+		const output = await bundler(input);
+		setCode(output);
+	}, 1000);
+	return () => {
+		clearTimeout(timer);
+	};
+}, [input]);

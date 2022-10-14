@@ -7,12 +7,18 @@ import bundler from "../../bundler";
 const CodeCell = () => {
 	const [code, setCode] = React.useState("");
 	const [input, setInput] = React.useState("");
+	const [err, setErr] = React.useState("");
 
-	const onClick = async () => {
-		const output = await bundler(input);
-
-		setCode(output);
-	};
+	React.useEffect(() => {
+		const timer = setTimeout(async () => {
+			const output = await bundler(input);
+			setCode(output.code);
+			setErr(output.err);
+		}, 1000);
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [input]);
 
 	return (
 		<Resizable direction="vertical">
@@ -23,7 +29,7 @@ const CodeCell = () => {
 						onChange={(value) => setInput(value)}
 					/>
 				</Resizable>
-				<Preview code={code} />
+				<Preview code={code} err={err} />
 			</div>
 		</Resizable>
 	);
