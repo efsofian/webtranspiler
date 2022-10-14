@@ -85,3 +85,17 @@ val.current = xx;
 ...
 val.current.setValue(newVal); // to set a new val // weird marche pas
 val.current = yy;
+
+npm install bulmaswatch // bulma with themes
+
+ts:
+si no .d.ts // no package too
+on cree un types.d.ts
+declare module "nomdlalibquirequiereddeclare";
+
+// @ts-ignore
+=> tell ts to ignore the error/warning of this line
+
+
+npm install react-resizable @types/react-resizable
+{ Resizable, ResizableBox } // resizable === more cfgs
