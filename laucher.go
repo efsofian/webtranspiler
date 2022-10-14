@@ -110,3 +110,15 @@ React.useEffect(() => {
 		clearTimeout(timer);
 	};
 }, [input]);
+
+
+to avoid bubbling in react:
+
+event.stopPropagation() // avoid bubbling
+ou
+addEventListener("typeofevent", callback, { capture: true}) // levent sera typeofeventCapture
+=> capturing phase happen before the bubbling phase
+so onClickCapture happen before onClick and onClick is bubbled with his parents to root
+
+vanillajs:
+parent.contains(htmlelem) // to check if the parent contain htmlelem
