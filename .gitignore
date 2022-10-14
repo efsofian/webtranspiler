@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-./launcher.go
+launcher.go
 
 # testing
 /coverage
